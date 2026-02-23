@@ -1,6 +1,6 @@
-const ship = (length = null, hitCount = 0) =>{
+const ship = (length = 1, hitCount = 0) =>{
   return {
-    length: length,
+    length: length <= 5 ? length: null,
     hitCount: hitCount,
     hit() {
       this.hitCount++

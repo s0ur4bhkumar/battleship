@@ -19,3 +19,19 @@ test("test for if ship is not sunk", () => {
   mock.hit();
   expect(mock.isSunk()).toBe(false);
 });
+
+test("test for ship's length", () => {
+  const mock = ship(6);
+  expect(mock.length).toBe(null);
+});
+
+test("test for ship's length", () => {
+  const mock = ship();
+  expect(mock.length).toBe(1);
+});
+
+test("test for ship's length", () => {
+  const mock = ship(2);
+  expect(mock.length).toBe(2);
+});
+
