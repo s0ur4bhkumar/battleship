@@ -16,7 +16,7 @@
   "scripts": {
     "build": "webpack --config ./configs/webpack.config.js --env env=prod",
     "dev": "webpack serve --config ./configs/webpack.config.js --env env=dev",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "type": "module"
 }
