@@ -38,14 +38,14 @@ const gameBoard = () => {
   }
   return {
     board: board,
-    placeSingle(x, y, ship = "ship") {
+    placeSingle(x, y, ship = Ship()) {
       //function to place ships with length 1 or unspecified length
       if (Number.isInteger(board[x][y])) {
         if (isTopRow(x, y) && isLeftMostColoumn(x, y)) {
           board[x][y] = ship; // [0][0]
-          board[x + 1][y] = " "; //for [1,0]
-          board[x][y + 1] = " "; // for [0][1]
-          board[x + 1][y + 1] = " "; // for [1][1]
+          board[x + 1][y] = " "; //[1,0]
+          board[x][y + 1] = " "; //[0][1]
+          board[x + 1][y + 1] = " "; //[1][1]
         } else if (isTopRow(x, y) && isRightMostColumn(x, y)) {
           console.log("top and rightmost");
           board[x][y] = ship; //[0][9]
@@ -53,15 +53,15 @@ const gameBoard = () => {
           board[x + 1][y] = " "; //[1][9]
           board[x + 1][y - 1] = " "; //[1][8]
         } else if (isBottomRow(x, y) && isLeftMostColoumn(x, y)) {
-          board[x][y] = ship; // for [9][0]
-          board[x - 1][y] = " "; // for [8][0]
-          board[x][y + 1] = " "; // for [9][1]
-          board[x - 1][y + 1] = " "; // for [8][1]
+          board[x][y] = ship; //[9][0]
+          board[x - 1][y] = " "; //[8][0]
+          board[x][y + 1] = " "; //[9][1]
+          board[x - 1][y + 1] = " ";//[8][1]
         } else if (isBottomRow(x, y) && isRightMostColumn(x, y)) {
-          board[x][y] = ship; // for [9][9]
-          board[x - 1][y] = " "; // for [8][9]
-          board[x][y - 1] = " "; // for [9][8]
-          board[x - 1][y - 1] = " "; // for [8][8]
+          board[x][y] = ship; //[9][9]
+          board[x - 1][y] = " "; //[8][9]
+          board[x][y - 1] = " "; //[9][8]
+          board[x - 1][y - 1] = " ";//for [8][8]
         } else if (isTopRow(x, y)) {
           board[x][y] = ship; // taking [0][4] as an example
           board[x][y - 1] = " "; // [0][3]
@@ -103,9 +103,14 @@ const gameBoard = () => {
         }
       }
     },
+    placeHorizontally(x, y, ship = 'ship') {
+      if (ship.length === 1) {
+        this.placeSingle(x,y,ship)
+      }
+      else {
+        
+      }
+    }
   };
 };
-const board = gameBoard();
-board.placeSingle(4, 9);
-console.log(board.board);
 export { Ship, gameBoard };

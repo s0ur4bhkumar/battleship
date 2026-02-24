@@ -37,19 +37,19 @@ describe("ship()", () => {
   });
 });
 
+let board;
+beforeEach(() => {
+  board = gameBoard();
+});
+afterEach(() => {
+  board = null;
+});
 describe("gameboard methods", () => {
-  describe("place horizontally method for ship", () => {
-    let board;
-    beforeEach(() => {
-      board = gameBoard();
-    });
-    afterEach(() => {
-      board = null;
-    });
-    it("is placed on top row and leftmost column for ship with size 1", () => {
-      board.placeSingle(0, 0);
+  describe("place method for ship with length 1", () => {
+    it("is placed on top row and leftmost column", () => {
+      board.placeSingle(0, 0, "hello");
       expect(board.board).toEqual([
-        ["ship", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hello", " ", 2, 3, 4, 5, 6, 7, 8, 9],
         [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -61,10 +61,10 @@ describe("gameboard methods", () => {
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
       ]);
     });
-    it("is place on top row and rightmost column for ship with size 1", () => {
-      board.placeSingle(0, 9);
+    it("is place on top row and rightmost column", () => {
+      board.placeSingle(0, 9, "hello");
       expect(board.board).toEqual([
-        [0, 1, 2, 3, 4, 5, 6, 7, " ", "ship"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hello"],
         [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -76,8 +76,8 @@ describe("gameboard methods", () => {
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
       ]);
     });
-    it("is placed on bottom row and leftmost column for ship with size 1", () => {
-      board.placeSingle(9, 0);
+    it("is placed on bottom row and leftmost column", () => {
+      board.placeSingle(9, 0, "hello");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -88,11 +88,11 @@ describe("gameboard methods", () => {
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
-        ["ship", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hello", " ", 2, 3, 4, 5, 6, 7, 8, 9],
       ]);
     });
-    it("is placed on bottom row and rightmost column for ship with size 1", () => {
-      board.placeSingle(9, 9);
+    it("is placed on bottom row and rightmost", () => {
+      board.placeSingle(9, 9, "hello");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -103,13 +103,13 @@ describe("gameboard methods", () => {
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
-        [0, 1, 2, 3, 4, 5, 6, 7, " ", "ship"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hello"],
       ]);
     });
     it("is placed on top row", () => {
-      board.placeSingle(0, 4);
+      board.placeSingle(0, 4, "hello");
       expect(board.board).toEqual([
-        [0, 1, 2, " ", "ship", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hello", " ", 6, 7, 8, 9],
         [0, 1, 2, " ", " ", " ", 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -122,7 +122,7 @@ describe("gameboard methods", () => {
       ]);
     });
     it("is placed on bottom row", () => {
-      board.placeSingle(9, 4);
+      board.placeSingle(9, 4, "hello");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -133,17 +133,17 @@ describe("gameboard methods", () => {
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, " ", " ", " ", 6, 7, 8, 9],
-        [0, 1, 2, " ", "ship", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hello", " ", 6, 7, 8, 9],
       ]);
     });
     it("is placed on leftmost column", () => {
-      board.placeSingle(4, 0);
+      board.placeSingle(4, 0, "hello");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
-        ["ship", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hello", " ", 2, 3, 4, 5, 6, 7, 8, 9],
         [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -152,13 +152,13 @@ describe("gameboard methods", () => {
       ]);
     });
     it("is placed on rightmost column", () => {
-      board.placeSingle(4, 9);
+      board.placeSingle(4, 9, "hello");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
-        [0, 1, 2, 3, 4, 5, 6, 7, " ", "ship"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hello"],
         [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -167,14 +167,31 @@ describe("gameboard methods", () => {
       ]);
     });
     it("is placed generally for ship with size 1", () => {
-      board.placeSingle(5, 5);
+      board.placeSingle(5, 5, "hello");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, " ", " ", " ", 7, 8, 9],
-        [0, 1, 2, 3, " ", "ship", " ", 7, 8, 9],
+        [0, 1, 2, 3, " ", "hello", " ", 7, 8, 9],
+        [0, 1, 2, 3, " ", " ", " ", 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+  });
+  describe("horizontal placements", () => {
+    it("places single element", () => {
+      board.placeHorizontally(5, 5, "h");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, " ", " ", " ", 7, 8, 9],
+        [0, 1, 2, 3, " ", "h", " ", 7, 8, 9],
         [0, 1, 2, 3, " ", " ", " ", 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
