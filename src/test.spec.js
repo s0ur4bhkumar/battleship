@@ -456,7 +456,6 @@ describe("gameboard methods", () => {
       ]);
     });
   });
-
   it("board", () => {
     const board = gameBoard();
     expect(board.board).toEqual([
