@@ -47,9 +47,9 @@ afterEach(() => {
 describe("gameboard methods", () => {
   describe("place method for ship with length 1", () => {
     it("is placed on top row and leftmost column", () => {
-      board.placeSingle(0, 0, "hello");
+      board.placeShip(0, 0, "h");
       expect(board.board).toEqual([
-        ["hello", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["h", " ", 2, 3, 4, 5, 6, 7, 8, 9],
         [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -62,9 +62,9 @@ describe("gameboard methods", () => {
       ]);
     });
     it("is place on top row and rightmost column", () => {
-      board.placeSingle(0, 9, "hello");
+      board.placeShip(0, 9, "h");
       expect(board.board).toEqual([
-        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hello"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "h"],
         [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -77,7 +77,7 @@ describe("gameboard methods", () => {
       ]);
     });
     it("is placed on bottom row and leftmost column", () => {
-      board.placeSingle(9, 0, "hello");
+      board.placeShip(9, 0, "h");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -88,11 +88,11 @@ describe("gameboard methods", () => {
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
-        ["hello", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["h", " ", 2, 3, 4, 5, 6, 7, 8, 9],
       ]);
     });
     it("is placed on bottom row and rightmost", () => {
-      board.placeSingle(9, 9, "hello");
+      board.placeShip(9, 9, "h");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -103,13 +103,13 @@ describe("gameboard methods", () => {
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
-        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hello"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "h"],
       ]);
     });
     it("is placed on top row", () => {
-      board.placeSingle(0, 4, "hello");
+      board.placeShip(0, 4, "h");
       expect(board.board).toEqual([
-        [0, 1, 2, " ", "hello", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "h", " ", 6, 7, 8, 9],
         [0, 1, 2, " ", " ", " ", 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -122,7 +122,7 @@ describe("gameboard methods", () => {
       ]);
     });
     it("is placed on bottom row", () => {
-      board.placeSingle(9, 4, "hello");
+      board.placeShip(9, 4, "h");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -133,17 +133,17 @@ describe("gameboard methods", () => {
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, " ", " ", " ", 6, 7, 8, 9],
-        [0, 1, 2, " ", "hello", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "h", " ", 6, 7, 8, 9],
       ]);
     });
     it("is placed on leftmost column", () => {
-      board.placeSingle(4, 0, "hello");
+      board.placeShip(4, 0, "h");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
-        ["hello", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["h", " ", 2, 3, 4, 5, 6, 7, 8, 9],
         [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -152,13 +152,13 @@ describe("gameboard methods", () => {
       ]);
     });
     it("is placed on rightmost column", () => {
-      board.placeSingle(4, 9, "hello");
+      board.placeShip(4, 9, "h");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
-        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hello"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "h"],
         [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -167,24 +167,7 @@ describe("gameboard methods", () => {
       ]);
     });
     it("is placed generally for ship with size 1", () => {
-      board.placeSingle(5, 5, "hello");
-      expect(board.board).toEqual([
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [0, 1, 2, 3, " ", " ", " ", 7, 8, 9],
-        [0, 1, 2, 3, " ", "hello", " ", 7, 8, 9],
-        [0, 1, 2, 3, " ", " ", " ", 7, 8, 9],
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-      ]);
-    });
-  });
-  describe("horizontal placements", () => {
-    it("places single element", () => {
-      board.placeHorizontally(5, 5, "h");
+      board.placeShip(5, 5, "h");
       expect(board.board).toEqual([
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -199,6 +182,281 @@ describe("gameboard methods", () => {
       ]);
     });
   });
+  describe("place method for ship with length more than 1 horizontally", () => {
+    it("is placed on top row and leftmost column horizontally", () => {
+      board.placeShip(0, 0, "hell");
+      expect(board.board).toEqual([
+        ["hell", "hell", "hell", "hell", " ", 5, 6, 7, 8, 9],
+        [" ", " ", " ", " ", " ", 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on top row and rightmost column horizontally", () => {
+      board.placeShip(0, 9, "hell");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, " ", "hell", "hell", "hell", "hell"],
+        [0, 1, 2, 3, 4, " ", " ", " ", " ", " "],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on bottom row and leftmost column horizontally", () => {
+      board.placeShip(9, 0, "hell");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [" ", " ", " ", " ", " ", 5, 6, 7, 8, 9],
+        ["hell", "hell", "hell", "hell", " ", 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on bottom row and rightmost column horizontally", () => {
+      board.placeShip(9, 9, "hell");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, " ", " ", " ", " ", " "],
+        [0, 1, 2, 3, 4, " ", "hell", "hell", "hell", "hell"],
+      ]);
+    });
+    it("is placed on the top row horizontally", () => {
+      board.placeShip(0, 4, "hell");
+      expect(board.board).toEqual([
+        [0, 1, 2, " ", "hell", "hell", "hell", "hell", " ", 9],
+        [0, 1, 2, " ", " ", " ", " ", " ", " ", 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on bottom row horizontally", () => {
+      board.placeShip(9, 4, "hell");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, " ", " ", " ", " ", " ", " ", 9],
+        [0, 1, 2, " ", "hell", "hell", "hell", "hell", " ", 9],
+      ]);
+    });
+    it("is placed on leftmost column horizontally", () => {
+      board.placeShip(4, 0, "hell");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [" ", " ", " ", " ", " ", 5, 6, 7, 8, 9],
+        ["hell", "hell", "hell", "hell", " ", 5, 6, 7, 8, 9],
+        [" ", " ", " ", " ", " ", 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on rightmost column horizontally", () => {
+      board.placeShip(4, 9, "hell");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, " ", " ", " ", " ", " "],
+        [0, 1, 2, 3, 4, " ", "hell", "hell", "hell", "hell"],
+        [0, 1, 2, 3, 4, " ", " ", " ", " ", " "],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed generally horizontally", () => {
+      board.placeShip(4, 4, "hell");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, " ", " ", " ", " ", " ", " ", 9],
+        [0, 1, 2, " ", "hell", "hell", "hell", "hell", " ", 9],
+        [0, 1, 2, " ", " ", " ", " ", " ", " ", 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+  });
+  describe("place method for ship with length more than 1 vertically", () => {
+    it("is placed on top row and leftmost column vertically", () => {
+      board.placeShip(0, 0, "hell", "vertically");
+      expect(board.board).toEqual([
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on top row and rightmost column vertically", () => {
+      board.placeShip(0, 9, "hell", "vertical");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on bottom row and leftmost column vertically", () => {
+      board.placeShip(9, 0, "hell", "vertical");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on bottom row and rightmost column vertically", () => {
+      board.placeShip(9, 9, "hell", "vertical");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+      ]);
+    });
+    it("is placed on top row vertically", () => {
+      board.placeShip(0, 4, "hell", "vertical");
+      expect(board.board).toEqual([
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", " ", " ", 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on bottom row vertically", () => {
+      board.placeShip(9, 4, "hell", "vertical");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, " ", " ", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on leftmost row vertically", () => {
+      board.placeShip(4, 0, "hell", "vertical");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        ["hell", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        [" ", " ", 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed on rightmost row vertically", () => {
+      board.placeShip(4, 9, "hell", "vertical");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", "hell"],
+        [0, 1, 2, 3, 4, 5, 6, 7, " ", " "],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+    it("is placed generally vertically", () => {
+      board.placeShip(4, 4, "hell", "vertical");
+      expect(board.board).toEqual([
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [0, 1, 2, " ", " ", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", "hell", " ", 6, 7, 8, 9],
+        [0, 1, 2, " ", " ", " ", 6, 7, 8, 9],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]);
+    });
+  });
+
   it("board", () => {
     const board = gameBoard();
     expect(board.board).toEqual([
