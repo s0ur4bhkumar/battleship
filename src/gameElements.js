@@ -24,6 +24,75 @@ const gameBoard = () => {
     }
     board.push(row);
   }
+  function topPrefix(x, y, ship, layout) {
+    if (layout === "horizontal") {
+      if (board[x - 1]) {
+        if (board[x - 1][y - 1]) {
+          board[x - 1][y - 1] = " ";
+        }
+        for (let i = 0; i <= ship.length; i++) {
+          if (y + i >= 10) {
+            return;
+          }
+          board[x - 1][y + i] = " ";
+        }
+      }
+      return;
+    }
+    if (y + ship.length >= 10) {
+      return;
+    } else {
+      board[x - 1][y] = " ";
+    }
+  }
+  function bottomSuffix(x, y, ship, layout) {
+    if (layout === "horizontal") {
+      if (board[x + 1]) {
+        if (board[y - 1]) {
+          board[x + 1][y - 1] = " ";
+        }
+        let i = 0;
+        while (i <= ship.length) {
+          if (board[y + i]) {
+            board[x + 1][y + i] = " ";
+          }
+          i++;
+        }
+      }
+      return;
+    }
+    board[x + ship.length][y] = " ";
+  }
+  function leftPrefix(x, y, ship, layout) {
+    if (layout === "vertical") {
+      if (board[y - 1]) {
+        let i = 0;
+        while (i < ship.length) {
+          board[x + i][y - 1] = " ";
+        }
+      }
+      return;
+    }
+    if (board[y - 1]) {
+      board[x][y - 1] = " ";
+    }
+    return;
+  }
+  function rightSuffix(x, y, ship, layout) {
+    if (layout === "vertical") {
+      if (board[y + 1]) {
+        for (let i = 0; i < ship.length; i++) {
+          board[x + i][y + 1] = " ";
+        }
+      }
+      return;
+    }
+    if (y + ship.length >= 10) {
+      return;
+    } else {
+      board[x][y + ship.length] = " ";
+    }
+  }
   function isTopRow(x, y) {
     return x === 0;
   }
@@ -33,7 +102,7 @@ const gameBoard = () => {
   function isLeftMostColoumn(x, y) {
     return y === 0;
   }
-  function isRightMostColumn(x, y, length) {
+  function isRightMostColumn(x, y) {
     // if (length !== 1) {
     //   return length + y <= 10 || length + x <= 10;
     // }
@@ -41,21 +110,39 @@ const gameBoard = () => {
   }
   function placeCheck(x, y, ship, layout) {
     if (layout === "horizontal") {
-      if (y + ship.length >= 10) {
-        return false;
+      for (let i = 0; i < ship.length; i++) {
+        if (!Number.isInteger(board[x][y + i])) {
+          return false;
+        }
+        return true;
       }
     }
-    if (x + ship.length >= 10) {
-      return false;
+    for (let i = 0; i < ship.length; i++) {
+      if (!Number.isInteger(board[x + i][y])) {
+        return false;
+      }
+      return true;
     }
   }
   return {
     board: board,
     placeShip(x, y, ship = Ship(), layout = "horizontal") {
-      
-    }
+      if (!placeCheck(x, y, ship, layout)) {
+        return board;
+      }
+      if (y + ship.length > 10) {
+        return;
+      }
+      for (let i = 0; i < ship.length; i++) {
+        board[x][y + i] = ship;
+      }
+      topPrefix(x, y, ship, layout);
+      bottomSuffix(x, y, ship, layout);
+      leftPrefix(x, y, ship, layout);
+      rightSuffix(x, y, ship, layout);
+    },
   };
-}
+};
 const board = gameBoard();
 board.placeShip(9, 6, "ship");
 console.log(board.board);
