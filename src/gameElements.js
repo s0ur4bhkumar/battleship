@@ -39,10 +39,16 @@ const gameBoard = () => {
       }
       return;
     }
-    if (y + ship.length >= 10) {
-      return;
-    } else {
+    if (!isTopRow(x, y)) {
       board[x - 1][y] = " ";
+      if (!isBottomRow(x, y) && !isLeftMostColoumn(x, y)) {
+        board[x - 1][y - 1] = " ";
+      }
+      if (isRightMostColumn(x, y)) {
+        board[x - 1][y - 1] = " ";
+        return;
+      }
+      board[x - 1][y + 1] = " ";
     }
   }
   function bottomSuffix(x, y, ship, layout) {
@@ -61,7 +67,16 @@ const gameBoard = () => {
       }
       return;
     }
-    board[x + ship.length][y] = " ";
+    if (board[x + ship.length]) {
+      board[x + ship.length][y] = " ";
+      if (!isLeftMostColoumn(x, y)) {
+        board[x + ship.length][y - 1] = " ";
+      }
+      if (board[y + 1]) {
+        board[x + ship.length][y + 1] = " ";
+        return;
+      }
+    }
   }
   function leftPrefix(x, y, ship, layout) {
     if (layout === "vertical") {
@@ -69,6 +84,7 @@ const gameBoard = () => {
         let i = 0;
         while (i < ship.length) {
           board[x + i][y - 1] = " ";
+          i++;
         }
       }
       return;
@@ -103,9 +119,6 @@ const gameBoard = () => {
     return y === 0;
   }
   function isRightMostColumn(x, y) {
-    // if (length !== 1) {
-    //   return length + y <= 10 || length + x <= 10;
-    // }
     return y === 9;
   }
   function placeCheck(x, y, ship, layout) {
@@ -130,11 +143,24 @@ const gameBoard = () => {
       if (!placeCheck(x, y, ship, layout)) {
         return board;
       }
-      if (y + ship.length > 10) {
+      if (layout === "horizontal") {
+        if (y + ship.length > 10) {
+          return;
+        }
+        for (let i = 0; i < ship.length; i++) {
+          board[x][y + i] = ship;
+        }
+        topPrefix(x, y, ship, layout);
+        bottomSuffix(x, y, ship, layout);
+        leftPrefix(x, y, ship, layout);
+        rightSuffix(x, y, ship, layout);
+        return;
+      }
+      if (x + ship.length > 10) {
         return;
       }
       for (let i = 0; i < ship.length; i++) {
-        board[x][y + i] = ship;
+        board[x + i][y] = ship;
       }
       topPrefix(x, y, ship, layout);
       bottomSuffix(x, y, ship, layout);
@@ -144,6 +170,9 @@ const gameBoard = () => {
   };
 };
 const board = gameBoard();
-board.placeShip(9, 6, "ship");
+board.placeShip(6, 4, "ship", "vertical");
+board.placeShip(6, 0, 's')
+board.placeShip(1, 2, 'hit', 'vertical')
+board.placeShip(0,1,'s')
 console.log(board.board);
 export { Ship, gameBoard };
