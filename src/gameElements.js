@@ -178,7 +178,7 @@ const gameBoard = () => {
     recieveAttack(x, y) {
       if (board[x][y] === " " || Number.isInteger(board[x][y])) {
         board[x][y] = "missed";
-        return;
+        return false;
       }
       board[x][y].hit();
     },
@@ -218,6 +218,19 @@ const gameBoard = () => {
       }
       if (count === ship.length) {
         return true;
+      } else if (count > ship.length) {
+        return (board = [
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        ]);
       } else {
         return false;
       }
@@ -256,6 +269,7 @@ const gameBoard = () => {
           }
         }
       }
+      return;
     },
   };
 };
@@ -268,6 +282,6 @@ const board = gameBoard();
 // board.placeShip(9, 0, ship4);
 // board.placeShip(4, 4, ship3, "vertical");
 // board.placeShip(0, 9, ship2, "vertical");
-board.randomPlaceShip()
-console.log(board.board)
+board.randomPlaceShip();
+console.log("board is here", board.board);
 export { Ship, gameBoard };
