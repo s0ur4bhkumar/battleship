@@ -1,4 +1,5 @@
-const Ship = (length = 1, hitCount = 0) => {
+const Ship = (length = 1) => {
+  let hitCount = 0;
   return {
     length: length <= 4 && length !== 0 ? length : null,
     hitCount: hitCount,
@@ -167,12 +168,93 @@ const gameBoard = () => {
       leftPrefix(x, y, ship, layout);
       rightSuffix(x, y, ship, layout);
     },
+    recieveAttack(x, y) {
+      if (board[x][y] === " " || Number.isInteger(board[x][y])) {
+        board[x][y] = "missed";
+        return;
+      }
+      board[x][y].hit();
+    },
+    allShipsSunk() {
+      let ships = [];
+      let sunkCount = 0;
+      for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+          if (
+            !ships.includes(board[i][j]) &&
+            board[i][j] !== " " &&
+            !Number.isInteger(board[i][j]) &&
+            board[i][j] !== "missed"
+          ) {
+            ships.push(board[i][j]);
+          }
+        }
+      }
+      ships.forEach((ship) => {
+        if (ship.isSunk()) {
+          sunkCount++;
+        }
+      });
+      if (sunkCount === 4) {
+        return true;
+      }
+      return false;
+    },
+    isPlaced(ship) {
+      let count = 0;
+      for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+          if (board[i][j] === ship) {
+            count++;
+          }
+        }
+      }
+      if (count === ship.length) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    allShipsPlaced() {
+      let count = 0;
+      for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+          if (
+            board[i][j] !== " " &&
+            !Number.isInteger(board[i][j]) &&
+            board[i][j] !== "missed"
+          ) {
+            count++;
+          }
+        }
+      }
+      if (count === 10) {
+        return true;
+      }
+      return false;
+    },
+    randomePlaceShip() {
+      let x = Math.floor(Math.random(0, 10) * 10);
+      let y = Math.floor(Math.random(0, 10) * 10);
+      let ship1 = Ship()
+      let ship2 = Ship(2)
+      let ship3 = Ship(3)
+      let ship4 = Ship(4)
+      let shipList = [ship1,ship2,ship3,ship4]
+      while (!this.arePlaced()) {
+        
+      }
+    },
   };
 };
-const board = gameBoard();
-board.placeShip(6, 4, "ship", "vertical");
-board.placeShip(6, 0, 's')
-board.placeShip(1, 2, 'hit', 'vertical')
-board.placeShip(0,1,'s')
-console.log(board.board);
+// const board = gameBoard();
+// let ship1 = Ship();
+// let ship2 = Ship(2);
+// let ship3 = Ship(3);
+// let ship4 = Ship(4);
+// board.placeShip(0, 0, ship1);
+// board.placeShip(9, 0, ship4);
+// board.placeShip(4, 4, ship3, "vertical");
+// board.placeShip(0, 9, ship2, "vertical");
+// console.log(board)
 export { Ship, gameBoard };

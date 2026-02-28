@@ -38,11 +38,14 @@ describe("ship()", () => {
 });
 
 let board;
+let ship;
 beforeEach(() => {
   board = gameBoard();
+  ship = Ship();
 });
 afterEach(() => {
   board = null;
+  ship = null;
 });
 describe("gameboard methods", () => {
   describe("place method for ship with length 1", () => {
@@ -455,6 +458,108 @@ describe("gameboard methods", () => {
         [0, 1, 2, " ", " ", " ", 6, 7, 8, 9],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
       ]);
+    });
+  });
+  describe("recieveAttack method", () => {
+    it("is hit", () => {
+      board.placeShip(0, 0, ship);
+      board.recieveAttack(0, 0);
+      expect(ship.hitCount).toBe(1);
+    });
+    it("is miss", () => {
+      board.placeShip(0, 0, ship);
+      board.recieveAttack(1, 0);
+      expect(board.board[1][0]).toBe("missed");
+    });
+    it("is sunk", () => {
+      const newShip = Ship(4);
+      board.placeShip(0, 4, newShip, "vertical");
+      board.recieveAttack(0, 4);
+      board.recieveAttack(1, 4);
+      board.recieveAttack(2, 4);
+      board.recieveAttack(3, 4);
+      expect(newShip.isSunk()).toBe(true);
+    });
+  });
+  describe("all ships sunk", () => {
+    it("all ships are not sunk", () => {
+      let ship1 = Ship();
+      let ship2 = Ship(2);
+      let ship3 = Ship(3);
+      let ship4 = Ship(4);
+      board.placeShip(0, 0, ship1);
+      board.placeShip(9, 0, ship4);
+      board.placeShip(4, 4, ship3, "vertical");
+      board.placeShip(0, 9, ship2, "vertical");
+      board.recieveAttack(9, 0);
+      board.recieveAttack(9, 1);
+      board.recieveAttack(9, 2);
+      board.recieveAttack(9, 3);
+      expect(board.allShipsSunk()).toEqual(false);
+    });
+    it("all ships are sunk", () => {
+      let ship1 = Ship();
+      let ship2 = Ship(2);
+      let ship3 = Ship(3);
+      let ship4 = Ship(4);
+      board.placeShip(0, 0, ship1);
+      board.placeShip(9, 0, ship4);
+      board.placeShip(4, 4, ship3, "vertical");
+      board.placeShip(0, 9, ship2, "vertical");
+      board.recieveAttack(9, 0);
+      board.recieveAttack(9, 1);
+      board.recieveAttack(9, 2);
+      board.recieveAttack(9, 3);
+      board.recieveAttack(0, 0);
+      board.recieveAttack(4, 4);
+      board.recieveAttack(5, 4);
+      board.recieveAttack(6, 4);
+      board.recieveAttack(0, 9);
+      board.recieveAttack(1, 9);
+      expect(board.allShipsSunk()).toEqual(true);
+    });
+  });
+  describe("all ships are placed", () => {
+    it("all ships are placed", () => {
+      let ship1 = Ship();
+      let ship2 = Ship(2);
+      let ship3 = Ship(3);
+      let ship4 = Ship(4);
+      board.placeShip(0, 0, ship1);
+      board.placeShip(9, 0, ship4);
+      board.placeShip(4, 4, ship3, "vertical");
+      board.placeShip(0, 9, ship2, "vertical");
+      expect(board.allShipsPlaced()).toBe(true);
+    });
+
+    it("all ships are not placed", () => {
+      let ship1 = Ship();
+      let ship2 = Ship(2);
+      let ship3 = Ship(3);
+      let ship4 = Ship(4);
+      board.placeShip(9, 0, ship4);
+      board.placeShip(4, 4, ship3, "vertical");
+      board.placeShip(0, 9, ship2, "vertical");
+      expect(board.allShipsPlaced()).toBe(false);
+    });
+  });
+  describe("isPlaced function", () => {
+    it("ship1 is placed", () => {
+      let ship1 = Ship();
+      board.placeShip(0, 0, ship1);
+      expect(board.isPlaced(ship1)).toBe(true);
+    });
+    it("ship2 is placed", () => {
+      let ship2 = Ship(2);
+      board.placeShip(5, 5, ship2, "vertical");
+      expect(board.isPlaced(ship2)).toBe(true);
+    });
+    it("ship3 is not placed", () => {
+      let ship3 = Ship(3);
+      let ship4 = Ship(4);
+      board.placeShip(4, 4, ship4, "vertical");
+      board.placeShip(4, 4, ship3);
+      expect(board.isPlaced(ship3)).toBe(false);
     });
   });
   it("board", () => {
