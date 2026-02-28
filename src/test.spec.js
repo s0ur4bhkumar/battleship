@@ -562,6 +562,13 @@ describe("gameboard methods", () => {
       expect(board.isPlaced(ship3)).toBe(false);
     });
   });
+  describe("random place function", () => {
+    it("is placed randomely", () => {
+      // const board = gameBoard()
+      board.randomPlaceShip();
+      expect(board.allShipsPlaced()).toBe(true);
+    });
+  });
   it("board", () => {
     const board = gameBoard();
     expect(board.board).toEqual([

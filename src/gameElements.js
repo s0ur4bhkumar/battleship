@@ -138,6 +138,13 @@ const gameBoard = () => {
       return true;
     }
   }
+  function randomAlign() {
+    let key = Math.round(Math.random(0, 1));
+    if (key === 0) {
+      return "horizontal";
+    }
+    return "vertical";
+  }
   return {
     board: board,
     placeShip(x, y, ship = Ship(), layout = "horizontal") {
@@ -233,21 +240,26 @@ const gameBoard = () => {
       }
       return false;
     },
-    randomePlaceShip() {
-      let x = Math.floor(Math.random(0, 10) * 10);
-      let y = Math.floor(Math.random(0, 10) * 10);
-      let ship1 = Ship()
-      let ship2 = Ship(2)
-      let ship3 = Ship(3)
-      let ship4 = Ship(4)
-      let shipList = [ship1,ship2,ship3,ship4]
-      while (!this.arePlaced()) {
-        
+    randomPlaceShip() {
+      let ship1 = Ship();
+      let ship2 = Ship(2);
+      let ship3 = Ship(3);
+      let ship4 = Ship(4);
+      let shipList = [ship1, ship2, ship3, ship4];
+      while (!this.allShipsPlaced()) {
+        for (let ship of shipList) {
+          while (!this.isPlaced(ship)) {
+            let x = Math.floor(Math.random(0, 10) * 10);
+            let y = Math.floor(Math.random(0, 10) * 10);
+            let align = randomAlign();
+            this.placeShip(x, y, ship, align);
+          }
+        }
       }
     },
   };
 };
-// const board = gameBoard();
+const board = gameBoard();
 // let ship1 = Ship();
 // let ship2 = Ship(2);
 // let ship3 = Ship(3);
@@ -256,5 +268,6 @@ const gameBoard = () => {
 // board.placeShip(9, 0, ship4);
 // board.placeShip(4, 4, ship3, "vertical");
 // board.placeShip(0, 9, ship2, "vertical");
-// console.log(board)
+board.randomPlaceShip()
+console.log(board.board)
 export { Ship, gameBoard };
