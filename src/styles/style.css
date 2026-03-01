@@ -1,6 +1,43 @@
-*{
-    border: 0;
+* {
+    /*border: 1px solid red;*/
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
+body,
+html {
+    height: 100%;
+}
+
+nav {
+    height: 50px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.playerBoard,.computerBoard{
+    display: grid;
+    grid-template-columns: repeat(10,50px);
+    grid-template-rows: repeat(10,50px);
+}
+
+.cell{
+    height: 50px;
+    width: 50px;
+    border: 1px solid red;
+
+}
+
+.playerBoard .cell{
+    border: 1px solid blue;
+}

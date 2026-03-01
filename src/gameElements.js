@@ -273,15 +273,4 @@ const gameBoard = () => {
     },
   };
 };
-const board = gameBoard();
-// let ship1 = Ship();
-// let ship2 = Ship(2);
-// let ship3 = Ship(3);
-// let ship4 = Ship(4);
-// board.placeShip(0, 0, ship1);
-// board.placeShip(9, 0, ship4);
-// board.placeShip(4, 4, ship3, "vertical");
-// board.placeShip(0, 9, ship2, "vertical");
-board.randomPlaceShip();
-console.log("board is here", board.board);
 export { Ship, gameBoard };
