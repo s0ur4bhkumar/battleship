@@ -2,9 +2,8 @@ import { Ship, gameBoard } from "./gameElements.js";
 import {
   cellFill,
   markPlayerShip,
-  playerAction,
   computerAction,
-  gameOn,
+  gameOn
 } from "./DOMHelperFn.js";
 
 // ************************************************DOM MANIPULATION************************************************
@@ -47,4 +46,4 @@ for (let i = 0; i < 10; i++) {
   computerBoard.append(computerRow);
 }
 
-gameOn(computer, computerBoard, player, playerBoard);
+gameOn(computer,computerBoard,player,playerBoard)
