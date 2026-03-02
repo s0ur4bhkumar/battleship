@@ -1,17 +1,11 @@
 import { Ship, gameBoard } from "./gameElements.js";
-
-// ************************************************DOM HELPER FUNCTION*********************************************
-function cellFill(player, cell){
-  if (player !== ' ' && !Number.isInteger(player)) {
-    cell.ship = player
-  }
-}
-
-function markPlayerShip(cell) {
-  if (cell.ship) {
-    cell.style.backgroundColor = 'blue'
-  }
-}
+import {
+  cellFill,
+  markPlayerShip,
+  playerAction,
+  computerAction,
+  gameOn,
+} from "./DOMHelperFn.js";
 
 // ************************************************DOM MANIPULATION************************************************
 const player = gameBoard();
@@ -38,21 +32,19 @@ for (let i = 0; i < 10; i++) {
   const playerRow = document.createElement("div");
   playerRow.classList.add("row");
   const computerRow = playerRow.cloneNode();
-  playerRow.id = `playerRow${i}`;
-  computerRow.id = `computerRow${i}`;
   for (let j = 0; j < 10; j++) {
     const playerCell = document.createElement("div");
     const computerCell = playerCell.cloneNode();
     computerCell.classList.add("cell", "computerCell");
     playerCell.classList.add("cell", "playerCell");
-    playerCell.id = `playerCell${j}`;
-    computerCell.id = `computerCell${j}`;
-    cellFill(player.board[i][j], playerCell)
-    cellFill(computer.board[i][j], computerCell)
-    markPlayerShip(playerCell)
+    cellFill(player.board[i][j], playerCell);
+    cellFill(computer.board[i][j], computerCell);
+    markPlayerShip(playerCell);
     playerRow.append(playerCell);
     computerRow.append(computerCell);
   }
   playerBoard.append(playerRow);
   computerBoard.append(computerRow);
 }
+
+gameOn(computer, computerBoard, player, playerBoard);

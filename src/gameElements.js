@@ -4,7 +4,10 @@ const Ship = (length = 1) => {
     length: length <= 4 && length !== 0 ? length : null,
     hitCount: hitCount,
     hit() {
-      this.hitCount++;
+      if (this.isSunk()) {
+        return
+      }
+        this.hitCount++;
     },
     isSunk() {
       if (this.hitCount === this.length) {
