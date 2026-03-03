@@ -36,6 +36,8 @@ for (let i = 0; i < 10; i++) {
     const computerCell = playerCell.cloneNode();
     computerCell.classList.add("cell", "computerCell");
     playerCell.classList.add("cell", "playerCell");
+    playerCell.textContent = `${10 * i + j}`
+    computerCell.textContent = `${10*i+j}`
     cellFill(player.board[i][j], playerCell);
     cellFill(computer.board[i][j], computerCell);
     markPlayerShip(playerCell);
